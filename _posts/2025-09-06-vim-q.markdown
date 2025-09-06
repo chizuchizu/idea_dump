@@ -1,0 +1,28 @@
+---
+layout: post
+title:  "How to use Ctrl-V in Vim with WSL"
+date:   2025-09-06 22:56:22 +0800
+categories: vim
+---
+This article discusses how to use Visual Selection in Vim when working with WSL.
+
+In Windows Terminal, Ctrl-V is assigned to paste text. However, in Vim, Ctrl-V is a critical shortcut for blockwise Visual selection.
+
+According to the Vim documentation, this causes a conflict:
+
+> ```
+                       *CTRL-V-alternative* *CTRL-Q*
+Since CTRL-V is used to paste, you can't use it to start a blockwise Visual
+selection.  You can use CTRL-Q instead.  You can also use CTRL-Q in Insert
+mode and Command-line mode to get the old meaning of CTRL-V.  But CTRL-Q
+doesn't work for terminals when it's used for control flow.
+```
+
+[Vim documentation: gui_w32](https://vimdoc.sourceforge.net/htmldoc/gui_w32.html#CTRL-V-alternative)
+
+
+To resolve this, I added the following line to my `vimrc`:
+
+```vim
+noremap <C-Q> <C-V>
+```
